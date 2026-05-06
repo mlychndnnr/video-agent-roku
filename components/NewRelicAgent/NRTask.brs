@@ -153,7 +153,9 @@ function nrData(videoSamples)
     rport = CreateObject("roMessagePort")
     if(m.region = "staging")
         urlReq.SetUrl("https://staging-mobile-collector.newrelic.com/mobile/v3/data")
-    else 
+    else if(m.region = "JP")
+        urlReq.SetUrl("https://mobile-collector.jp.nr-data.net/mobile/v3/data")
+    else
         urlReq.SetUrl("https://mobile-collector.newrelic.com/mobile/v3/data")
     end if
     urlReq.RetainBodyOnError(true)
