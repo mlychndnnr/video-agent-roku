@@ -93,6 +93,9 @@ jobs:
   # Upload to S3 using the reusable workflow from video-core-js
   publish:
     needs: build
+    permissions:
+      contents: write
+      id-token: write
     uses: newrelic/video-core-js/.github/workflows/npm-publish.yml@stable
     with:
       s3-path: 'media-streaming/roku'
