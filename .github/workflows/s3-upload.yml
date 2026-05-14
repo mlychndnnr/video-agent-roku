@@ -2,13 +2,16 @@ name: Build and Publish to S3
 
 on:
   workflow_dispatch:  # Manual trigger
-  push:
+  pull_request:
+    types: [closed]
     branches:
-      - release/workflow
+      - master
 
 jobs:
   # Build the New Relic Agent zip file
   build:
+    # Only run if manually triggered OR if PR was merged (not just closed)
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
